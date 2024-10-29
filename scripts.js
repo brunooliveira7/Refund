@@ -4,6 +4,9 @@ const expense = document.getElementById("expense");
 const category = document.getElementById("category");
 const form = document.querySelector("form");
 
+//seleciona os elementos da lista
+const expenseList = document.querySelector("ul");
+
 //capta quando entra conteúdo no input
 amount.oninput = () => {
   //captura o valor do input e substitui valor não numérico por vazio
@@ -39,26 +42,35 @@ form.onsubmit = (event) => {
     amount: amount.value,
     create_at: new Date(),
   };
-  //chama a função que irá adicionar o item na lista 
+  //chama a função que irá adicionar o item na lista
   expenseAdd(newExpense);
 };
 
 //adiciona a despesa a lista
 function expenseAdd(newExpense) {
   try {
-    //cria o elemento para adicionar na lista
+    //cria o elemento para adicionar o item (li) na lista (ul)
+    const expenseItem = document.createElement("li");
+    expenseItem.classList.add("expense");
+
+    //cria o ícone da categoria
+    const expenseIcon = document.createElement("img");
+    expenseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`);
+    expenseItem.setAttribute("alt", newExpense.category_name);
+
+    //adiciona as informações no item
+    expenseItem.append(expenseIcon)
     
+    //adiciona o item na lista
+    expenseList.append(expenseItem);
 
     //limpa os inputs
     expense.value = "";
     category.value = "";
     amount.value = "";
 
-  
   } catch (error) {
     alert("Não foi possível atualizar a lista de despesas");
     console.log(error);
   }
-
-
 }
