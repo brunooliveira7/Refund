@@ -26,6 +26,39 @@ function formatCurrencyBRL(value) {
   return value;
 }
 
+//captura o evento de submit para obter os valores
 form.onsubmit = (event) => {
   event.preventDefault();
+
+  //objeto dos dados detalhados de despesa do form
+  const newExpense = {
+    id: new Date().getTime(),
+    expense: expense.value,
+    category_id: category.value,
+    category_name: category.options[category.selectedIndex].text,
+    amount: amount.value,
+    create_at: new Date(),
+  };
+  //chama a função que irá adicionar o item na lista 
+  expenseAdd(newExpense);
+};
+
+//adiciona a despesa a lista
+function expenseAdd(newExpense) {
+  try {
+    //cria o elemento para adicionar na lista
+    
+
+    //limpa os inputs
+    expense.value = "";
+    category.value = "";
+    amount.value = "";
+
+  
+  } catch (error) {
+    alert("Não foi possível atualizar a lista de despesas");
+    console.log(error);
+  }
+
+
 }
