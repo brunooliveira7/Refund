@@ -64,11 +64,6 @@ function expenseAdd(newExpense) {
     //adiciona o item na lista
     expenseList.append(expenseItem);
 
-    //limpa os inputs
-    expense.value = "";
-    category.value = "";
-    amount.value = "";
-
   } catch (error) {
     alert("Não foi possível atualizar a lista de despesas");
     console.log(error);
