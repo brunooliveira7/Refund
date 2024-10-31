@@ -56,12 +56,12 @@ function expenseAdd(newExpense) {
     //cria o ícone da categoria
     const expenseIcon = document.createElement("img");
     expenseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`);
-    expenseItem.setAttribute("alt", newExpense.category_name);
+    expenseIcon.setAttribute("alt", newExpense.category_name);
 
-    //adiciona as informações no item
+    //adiciona as informações no item li
     expenseItem.append(expenseIcon)
-    
-    //adiciona o item na lista
+
+    //adiciona o item na lista ul
     expenseList.append(expenseItem);
 
   } catch (error) {
