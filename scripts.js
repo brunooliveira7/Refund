@@ -7,6 +7,8 @@ const form = document.querySelector("form");
 const expenseList = document.querySelector("ul");
 //seleciona o total das despesas
 const expensesQuantity = document.querySelector("aside header p span");
+//seleciona o total dos valores
+const expensesTotal = document.querySelector("aside header h2");
 
 //capta quando entra conteúdo no input
 amount.oninput = () => {
@@ -72,9 +74,9 @@ function expenseAdd(newExpense) {
     //cria o valor da despesa - span
     const expenseAmount = document.createElement("span");
     expenseAmount.classList.add("expense-amount");
-    //innerHTML porque tem uma coisa(small) dentro da outra(span)
-    //toUpperCase - garante que está tudo em maiúsculo para garantir que o replace vai encontrar
-    //já houve formatação no input
+    //innerHTML porque tem o small dentro da span
+    //toUpperCase - garante que está maiúsculo para garantir que o replace localize
+    //já houve formatação no input pra R$
     expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount
       .toUpperCase()
       .replace("R$", "")}`;
@@ -112,12 +114,41 @@ function updateTotals() {
   try {
     //recupera todos os itens (li) da lista (ul)
     const items = expenseList.children;
-    
+
     //atualiza a quantidade de itens (li) da lista (ul)
     expensesQuantity.textContent = `${items.length} ${
       items.length > 1 ? "despesas" : "despesa"
     }`;
 
+    //Var para incrementar o total
+    let total = 0;
+    //percorre cada item (li) da lista (ul)
+    for (let item = 0; item < items.length; item++) {
+      //recupera a span inteira de itens (li) da lista (ul)
+      const itemAmount = items[item].querySelector(".expense-amount");
+
+      //remove caracteres não numéricos e substitui a virgula pelo ponto - pega só o valor da span
+      let value = itemAmount.textContent
+        .replace(/[^\d]/g, "")
+        .replace(",", ".");
+
+      //converte o valor para float
+      value = parseFloat(value);
+
+      //verifica se o número é válido
+      if (isNaN(value)) {
+        return alert(
+          "Não foi possível calcular o total. O valor não parece ser um número"
+        );
+      }
+
+      //incrementar o valor total
+      total += Number(value);
+    }
+
+    //atualiza e exibe o total das despesas formatado
+    expensesTotal.textContent = total;
+    
   } catch (error) {
     alert("Não foi possível atualizar os totais.");
     console.log(error);
