@@ -1,9 +1,8 @@
 //seleciona os elementos do formulário
-const amount = document.getElementById("amount");
 const expense = document.getElementById("expense");
 const category = document.getElementById("category");
+const amount = document.getElementById("amount");
 const form = document.querySelector("form");
-
 //seleciona os elementos da lista
 const expenseList = document.querySelector("ul");
 
@@ -68,16 +67,24 @@ function expenseAdd(newExpense) {
     const expenseCategory = document.createElement("span");
     expenseCategory.textContent = newExpense.category_name;
 
+    //cria o valor da despesa - span
+    const expenseAmount = document.createElement("span");
+    expenseAmount.classList.add("expense-amount");
+    //innerHTML porque tem uma coisa(small) dentro da outra(span)
+    //toUpperCase - garante que está tudo em maiúsculo para garantir que o replace vai encontrar
+    //já houve formatação no input
+    expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount
+      .toUpperCase()
+      .replace("R$", "")}`;
+
     //adiciona name(strong) e category(span) a info(div)
     expenseInfo.append(expenseName, expenseCategory);
 
     //adiciona tudo nas informações no item li
-    expenseItem.append(expenseIcon, expenseInfo);
+    expenseItem.append(expenseIcon, expenseInfo, expenseAmount);
 
     //adiciona o item na lista ul
     expenseList.append(expenseItem);
-
-    
   } catch (error) {
     alert("Não foi possível atualizar a lista de despesas");
     console.log(error);
