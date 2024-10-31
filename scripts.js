@@ -77,11 +77,18 @@ function expenseAdd(newExpense) {
       .toUpperCase()
       .replace("R$", "")}`;
 
+    //cria o ícone de remover - img
+    const removeIcon = document.createElement("img");
+    removeIcon.classList.add("remove-icon");
+    removeIcon.setAttribute("src", "img/remove.svg");
+    removeIcon.setAttribute("alt", "remover");
+    
+
     //adiciona name(strong) e category(span) a info(div)
     expenseInfo.append(expenseName, expenseCategory);
 
     //adiciona tudo nas informações no item li
-    expenseItem.append(expenseIcon, expenseInfo, expenseAmount);
+    expenseItem.append(expenseIcon, expenseInfo, expenseAmount, removeIcon);
 
     //adiciona o item na lista ul
     expenseList.append(expenseItem);
