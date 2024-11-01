@@ -1,7 +1,7 @@
 <h1 align="center"> Refund </h1>
 
 <p align="center">
-Permite aos usuários controle de reembolso com funções de adicionar e listar despesas, exibindo cada item com detalhes de descrição e valor. Ele calcula automaticamente o total das despesas, mostrando o valor acumulado em tempo real.. Site disponível em: https://brunooliveira7.github.io/Refund
+Permite aos usuários controle de reembolso com funções de adicionar e listar despesas, exibindo cada item com detalhes de descrição e valor. Ele calcula automaticamente o total das despesas, mostrando o valor acumulado em tempo real. Site disponível em: https://brunooliveira7.github.io/Refund
 </p>
 
 <p align="center">
