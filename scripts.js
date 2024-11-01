@@ -147,11 +147,11 @@ function updateTotals() {
     }
 
     //cria a small para adicionar o R$ formatado
-    const symbolBRL = document.createElement("small")
+    const symbolBRL = document.createElement("small");
     symbolBRL.textContent = "R$";
 
     //formata o valor e remove o R$ que será exibido pela small com estilo customizado
-    total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
+    total = formatCurrencyBRL(total).toUpperCase().replace("R$", "");
     //limpa o conteúdo do valor total
     expensesTotal.innerHTML = "";
     //adiciona o símbolo da moeda e o valor total formatado
@@ -162,3 +162,16 @@ function updateTotals() {
     console.log(error);
   }
 }
+
+//evento que captura o clique para remover item da lista (ul)
+expenseList.addEventListener("click", (event) => {
+  //verifica se o elemento clicado é o ícone de remover
+  if (event.target.classList.contains("remove-icon")) {
+    //obtém a li pai do elemento clicado
+    const itemToRemove = event.target.closest(".expense");
+    //remove o item da lista
+    itemToRemove.remove();  
+  }
+  //atualiza os totais
+  updateTotals();
+});
