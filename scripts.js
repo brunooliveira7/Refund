@@ -96,13 +96,11 @@ function expenseAdd(newExpense) {
     //adiciona o item na lista ul
     expenseList.append(expenseItem);
 
+    //limpa o formulário antes de adicionar um novo item
+    clearForm();
+
     //atualiza os totais
     updateTotals();
-
-    //limpa os inputs
-    expense.value = "";
-    category.value = "";
-    amount.value = "";
   } catch (error) {
     alert("Não foi possível atualizar a lista de despesas.");
     console.log(error);
@@ -156,7 +154,6 @@ function updateTotals() {
     expensesTotal.innerHTML = "";
     //adiciona o símbolo da moeda e o valor total formatado
     expensesTotal.append(symbolBRL, total);
-
   } catch (error) {
     alert("Não foi possível atualizar os totais.");
     console.log(error);
@@ -170,8 +167,15 @@ expenseList.addEventListener("click", (event) => {
     //obtém a li pai do elemento clicado
     const itemToRemove = event.target.closest(".expense");
     //remove o item da lista
-    itemToRemove.remove();  
+    itemToRemove.remove();
   }
   //atualiza os totais
   updateTotals();
 });
+
+//limpa os inputs do formulário
+function clearForm() {
+  expense.value = "";
+  category.value = "";
+  amount.value = "";
+}
