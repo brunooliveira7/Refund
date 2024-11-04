@@ -178,7 +178,4 @@ function clearForm() {
   expense.value = "";
   category.value = "";
   amount.value = "";
-
-  //coloca o foco no input do amount
-  expense.focus();
 }
